@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, session, redirect
 from db_functions import db_connect, db_insert_user, db_find_all, db_delete_one
 from db_functions import MONGO_URI
+from forms import CreationForm
 
 perfiles = db_connect(MONGO_URI, "LinceHack", "Usuarios")
 
@@ -26,8 +27,23 @@ def perfil(name='nothing'):
 		print("finally")
 		return render_template('Perfil.html', name=user)
 
-
-
-
+@app.route('/creation/organization', methods=['GET','POST'])
+def creation():
+	form = CreationForm(request.form)
+	if request.method == 'POST':
+		Nombre = form.Nombre.data
+		Photo = form.Photo.data
+		Descripción = form.Descripción.data
+		Tags = form.Tags.data
+		if Nombre != None and Photo != None and Descripción != None and Tags != None:
+			Org = {
+				'user': Nombre,
+				'photo': Photo,
+				'Descripción': Descripción,
+				'Tags': Tags
+			}
+			db_insert_user(perfiles, Org)
+			return redirect('/')
+	return render_template('Register.html')
 if __name__ == '__main__':
 	app.run(debug=True, port=5000)

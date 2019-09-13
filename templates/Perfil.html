@@ -56,9 +56,11 @@
 
     <div class="col-md-6">
       <h1> {{ name['user'] }}</h1>
+      <h2> Descripcion </h2>
+      <P> {{name['Descripción']}}</P>
       <h3> Tags: 
       {% for gustos in name['Gustos'] %}
-        <h5> {{ name[gustos['Gustos']] }} </h5>
+        <h5> {{ gustos }} </h5>
       {% endfor %}
       </h3>
     </div>
