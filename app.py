@@ -54,6 +54,7 @@ def creation_org():
 				'Descripción': Descripción,
 				'Tags': Tags,
 				'Frase': Frase,
+				'Foto_aux': Foto_aux,
 				'Titulo_noticia': Titulo_noticia,
 				'Cuerpo_noticia': Cuerpo_noticia,
 				'Convocatoria': Convocatoria,
