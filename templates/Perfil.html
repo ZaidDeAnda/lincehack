@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title> {{ name['user'] }} </title>
+  <title> {{ name['acronimo'] }} </title>
 
   <!-- Bootstrap core CSS -->
   <link href="/../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -59,7 +59,7 @@
       <h2> Descripcion </h2>
       <P> {{name['Descripción']}}</P>
       <h3> Tags: 
-      {% for gustos in name['Gustos'] %}
+      {% for gustos in name['Tags'] %}
         <h5> {{ gustos }} </h5>
       {% endfor %}
       </h3>

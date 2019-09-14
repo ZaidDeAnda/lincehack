@@ -18,6 +18,9 @@ def db_find_all(collection, query={}):
 
 def db_delete_one(collection, query={}):
 	return collection.delete_many(query)
+    
+def db_find_one(collection, query={}):
+    return collection.find_one(query)
 
 if __name__ == '__main__':
 

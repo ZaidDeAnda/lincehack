@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, session, redirect
-from db_functions import db_connect, db_insert_user, db_find_all, db_delete_one
+from db_functions import db_connect, db_insert_user, db_find_all, db_delete_one, db_find_one
 from db_functions import MONGO_URI
 from forms import CreationForm
 
@@ -10,54 +10,49 @@ app = Flask(__name__, template_folder = 'templates')
 
 @app.route('/')
 def index():
-	return render_template('index.html')
+	item = db_find_all(perfiles_organizacion)
+	return render_template('index.html', item=item)
 
 @app.route('/userprofiles/<string:name>')
 def perfil_user(name='nothing'):
 	nombre={
-		'user':name
+		'user':acronimo
 	}
-	pe = db_find_all(perfiles_usuario, nombre)
+	item = db_find_one(perfiles_usuario, nombre)
+	return render_template('olimpiada.html', name=item)
 
-	try:
-		for p in pe:
-			user = p
-		print(user)
-
-	finally:
-		print("finally")
-		return render_template('Perfil.html', name=user)
-
-@app.route('/orgprofiles/<string:name>')
-def perfil_org(name='nothing'):
+@app.route('/orgprofiles/<string:acronimo>')
+def perfil_org(acronimo='nothing'):
 	nombre={
-		'user':name
+		'user':acronimo
 	}
-	pe = db_find_all(perfiles_organizacion, nombre)
-
-	try:
-		for p in pe:
-			user = p
-		print(user)
-
-	finally:
-		print("finally")
-		return render_template('Perfil.html', name=user)
+	item = db_find_one(perfiles_organizacion, nombre)
+	return render_template('olimpiada.html', name=item)
 
 @app.route('/creation/org', methods=['GET','POST'])
 def creation_org():
 	form = CreationForm(request.form)
 	if request.method == 'POST':
 		Nombre = form.Nombre.data
+		Acrónimo = form.Acrónimo.data
 		Photo = form.Photo.data
 		Descripción = form.Descripción.data
 		Tags = form.Tags.data
-		if Nombre != None and Photo != None and Descripción != None and Tags != None:
+		Tags = Tags.split(",")
+		Frase = form.Frase.data
+		Foto_aux = form.Foto_aux.data
+		Titulo_noticia = form.Titulo_noticia.data
+		Cuerpo_noticia = form.Cuerpo_noticia.data
+		if Nombre != None and Photo != None and Descripción != None and Tags != None and Acrónimo != None and Frase != None and Foto_aux != None and Titulo_noticia != None and Cuerpo_noticia != None:
 			Org = {
-				'user': Nombre,
+				'Nombre': Nombre,
+				'Acrónimo': Acrónimo,
 				'photo': Photo,
 				'Descripción': Descripción,
-				'Tags': Tags
+				'Tags': Tags,
+				'Frase': Frase,
+				'Titulo_noticia': Titulo_noticia,
+				'Cuerpo_noticia': Cuerpo_noticia
 			}
 			db_insert_user(perfiles_organizacion, Org)
 			return redirect('/')

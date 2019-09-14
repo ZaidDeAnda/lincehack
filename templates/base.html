@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<!--
+	Dopetrope by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title> {% block title %} {% endblock %}</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="/../static/assets/css/main.css">
+
+		<style type="text/css">
+			.bd-navbar {
+			    position: -webkit-sticky;
+			    position: sticky;
+			    top: 0;
+			    z-index: 1071;
+			}
+
+			.bd-navbar {
+			    padding-right: .5rem;
+			    padding-left: .5rem;
+			    padding-top: 1rem;
+			}
+
+			.bd-navbar {
+			    min-height: 4rem;
+			    background-color: #ffffff;
+			    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.05), inset 0 -1px 0 rgba(0,0,0,.1);
+			}
+
+			.badge-info {
+			    color: #fff;
+			    background-color: #17a2b8;
+			}
+			.badge-pill {
+			    padding-right: .6em;
+			    padding-left: .6em;
+			    border-radius: 10rem;
+			}
+			.badge {
+			    display: inline-block;
+			    padding: .25em .4em;
+			    font-size: 75%;
+			    font-weight: 700;
+			    line-height: 1;
+			    text-align: center;
+			    white-space: nowrap;
+			    vertical-align: baseline;
+			    border-radius: .25rem;
+			}
+		</style>
+
+	</head>
+
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<section id="header">
+
+					<!-- Logo -->
+						<img src="/../static/images/logo_mega.png" style="width: 20em; margin-bottom: 0; padding-bottom: 0;">
+
+					<!-- Nav -->
+						<nav id="nav" class="nav bd-navbar">
+							<ul>
+								<li class="current"><a href="/">Home</a></li>
+								<li>
+									<a href="">Dropdown</a>
+									<ul>
+										<li><a href="">Lorem ipsum dolor</a></li>
+										<li><a href="">Magna phasellus</a></li>
+										<li><a href="">Etiam dolore nisl</a></li>
+										<li>
+											<a href="">Phasellus consequat</a>
+											<ul>
+												<li><a href="">Magna phasellus</a></li>
+												<li><a href="">Etiam dolore nisl</a></li>
+												<li><a href="">Veroeros feugiat</a></li>
+												<li><a href="">Nisl sed aliquam</a></li>
+												<li><a href="">Dolore adipiscing</a></li>
+											</ul>
+										</li>
+										<li><a href="">Veroeros feugiat</a></li>
+									</ul>
+								</li>
+								<li><a href="left-sidebar.html">Left Sidebar</a></li>
+								<li><a href="right-sidebar.html">Right Sidebar</a></li>
+								<li><a href="no-sidebar.html">No Sidebar</a></li>
+							</ul>
+						</nav>
+
+		{% block content %}
+		{% endblock %}
+
+		<!-- Scripts -->
+			<script src="/../static/assets/js/jquery.min.js"></script>
+			<script src="/../static/assets/js/jquery.dropotron.min.js"></script>
+			<script src="/../static/assets/js/browser.min.js"></script>
+			<script src="/../static/assets/js/breakpoints.min.js"></script>
+			<script src="/../static/assets/js/util.js"></script>
+			<script src="/../static/assets/js/main.js"></script>
+
+	</body>
+</html>
