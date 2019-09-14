@@ -5,6 +5,7 @@ from forms import CreationForm
 
 perfiles_usuario = db_connect(MONGO_URI, "LinceHack", "Usuarios")
 perfiles_organizacion = db_connect(MONGO_URI, "LinceHack", "Organizaciones")
+perfiles_becas = db_connect(MONGO_URI, "LinceHack", "Becas")
 
 app = Flask(__name__, template_folder = 'templates')
 
@@ -19,15 +20,15 @@ def perfil_user(name='nothing'):
 		'user':acronimo
 	}
 	item = db_find_one(perfiles_usuario, nombre)
-	return render_template('olimpiada.html', name=item)
+	return render_template('olimpiada.html', name=user)
 
 @app.route('/orgprofiles/<string:acronimo>')
 def perfil_org(acronimo='nothing'):
 	nombre={
-		'user':acronimo
+		'Acrónimo':acronimo
 	}
 	item = db_find_one(perfiles_organizacion, nombre)
-	return render_template('olimpiada.html', name=item)
+	return render_template('olimpiada.html', item=item)
 
 @app.route('/creation/org', methods=['GET','POST'])
 def creation_org():
@@ -43,7 +44,9 @@ def creation_org():
 		Foto_aux = form.Foto_aux.data
 		Titulo_noticia = form.Titulo_noticia.data
 		Cuerpo_noticia = form.Cuerpo_noticia.data
-		if Nombre != None and Photo != None and Descripción != None and Tags != None and Acrónimo != None and Frase != None and Foto_aux != None and Titulo_noticia != None and Cuerpo_noticia != None:
+		Convocatoria = form.Convocatoria.data
+		Redes_Sociales = form.Redes_Sociales.data
+		if Nombre != None and Photo != None and Descripción != None and Tags != None and Acrónimo != None and Frase != None and Foto_aux != None and Titulo_noticia != None and Cuerpo_noticia != None and Convocatoria != None and Redes_Sociales != None:
 			Org = {
 				'Nombre': Nombre,
 				'Acrónimo': Acrónimo,
@@ -52,7 +55,9 @@ def creation_org():
 				'Tags': Tags,
 				'Frase': Frase,
 				'Titulo_noticia': Titulo_noticia,
-				'Cuerpo_noticia': Cuerpo_noticia
+				'Cuerpo_noticia': Cuerpo_noticia,
+				'Convocatoria': Convocatoria,
+				'Redes_Sociales': Redes_Sociales
 			}
 			db_insert_user(perfiles_organizacion, Org)
 			return redirect('/')
